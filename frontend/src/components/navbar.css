@@ -1,0 +1,39 @@
+#navbar {
+  background-color: #3f5663;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 18px 90px 18px 0;
+  font-size: 1.2rem;
+  position: relative;
+}
+
+#navbar__main-title {
+  position: absolute;
+  left: 35px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+#navbar__user {
+  margin-right: 35px;
+}
+
+#navbar__user__username {
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+#navbar__signup {
+  margin-right: 35px;
+}
+
+#navbar__signup:hover,
+#navbar__login:hover {
+  color: #ead2b4;
+}
+
+#navbar__logout:hover {
+  color: #ead2b4;
+  cursor: pointer;
+}

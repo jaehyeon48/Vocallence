@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Vocallence from './Vocallence';
+import VOCAllence from './VOCAllence';
 
 
 ReactDOM.render(
   <React.StrictMode>
-    <Vocallence />
+    <VOCAllence />
   </React.StrictMode>,
   document.getElementById('root')
 );
