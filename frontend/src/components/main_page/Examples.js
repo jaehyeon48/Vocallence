@@ -2,4 +2,8 @@ import React from 'react';
 
 import ExampleItem from './ExampleItem';
 
-export default function Examples() { }
+export default function Examples() {
+  return (
+    <div></div>
+  );
+}
