@@ -1,0 +1,34 @@
+{
+  "name": "vocallence",
+  "version": "1.0.0",
+  "description": "A vocabulary list app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaehyeon48/Vocallence.git"
+  },
+  "author": "Jason Rupert Hudson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jaehyeon48/Vocallence/issues"
+  },
+  "homepage": "https://github.com/jaehyeon48/Vocallence#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "concurrently": "^5.2.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.25",
+    "nodemon": "^2.0.4",
+    "uuid": "^8.2.0"
+  }
+}
