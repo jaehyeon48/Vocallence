@@ -5,9 +5,15 @@ const router = express.Router();
 const authCheck = require('../middlewares/authMiddleware');
 
 const {
+  signUpController,
   loginController,
   logoutController
 } = require('../controllers/authController');
+
+// @ROUTE         POST api/auth/signup
+// @DESCRIPTION   Register user
+// @ACCESS        Public
+router.post('/signup', signUpController);
 
 // @ROUTE         POST api/auth
 // @DESCRIPTION   Login user and get token
