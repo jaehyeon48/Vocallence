@@ -5,7 +5,7 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
   const [authInfo, setAuthInfo] = useState({
     isAuthenticated: false,
-    user: ''
+    user: null
   });
 
   return (

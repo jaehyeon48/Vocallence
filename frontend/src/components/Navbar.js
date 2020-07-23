@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 import { AuthContext } from '../context/AuthContext';
 
@@ -8,8 +9,17 @@ import './navbar.css';
 export default function Navbar() {
   const [authInfo, setAuthInfo] = useContext(AuthContext);
 
-  function handleLogout() {
+  async function handleLogout() {
+    try {
+      await axios('/api/auth/logout');
 
+      setAuthInfo({
+        isAuthenticated: false,
+        user: null
+      });
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const ifAuthenticatedRender = (
