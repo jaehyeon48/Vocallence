@@ -1,0 +1,49 @@
+#login-error-popup {
+  margin: 30px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: #cf3535;
+  border-radius: 0.35rem;
+  font-size: 1.1rem;
+  width: 450px;
+}
+
+#login-container {
+  width: 80vw;
+  margin: 10px auto;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+}
+
+#login-title {
+  grid-row: 1;
+  grid-column: 1 / span 30;
+  font-size: 4rem;
+}
+
+#login-form {
+  grid-row: 2;
+  grid-column: 1 / span 30;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  grid-template-rows: 50px 65px 50px 65px 50px;
+  font-size: 1.4rem;
+  margin-top: 30px;
+}
+
+#login-form__email-container {
+  grid-row: 1;
+  grid-column: 1 / span 25;
+  position: relative;
+}
+
+#login-form__password-container {
+  grid-row: 3;
+  grid-column: 1 / span 25;
+  position: relative;
+}
+
+#login-form__submit-button {
+  grid-row: 5;
+  grid-column: 1 / span 25;
+}

@@ -67,7 +67,7 @@ async function loginController(req, res) {
 
     jwt.sign(jwtPayload, process.env.JWT_SECRET, { expiresIn: '12h' }, (err, token) => {
       if (err) throw err;
-      return res.status(200).cookie('token', token, { httpOnly: true, sameSite: true }).send();
+      return res.status(200).cookie('token', token, { httpOnly: true, sameSite: true }).send(user.firstName);
     });
   } catch (error) {
     console.log(error);

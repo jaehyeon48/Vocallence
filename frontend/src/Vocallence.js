@@ -20,7 +20,7 @@ export default function VOCAllence() {
           <React.Fragment>
             <Route path="/main" component={MainPage} exact={true} />
             <Route path="/signup" component={SignUp} exact={true} />
-            <Route path="/signup" component={Login} exact={true} />
+            <Route path="/login" component={Login} exact={true} />
           </React.Fragment>
         </Switch>
       </Router>

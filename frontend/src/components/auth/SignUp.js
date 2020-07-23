@@ -103,6 +103,7 @@ export default function SignUp() {
   }
 
   async function handleSubmit(e) {
+
     e.preventDefault();
 
     if (isFirstSubmit) {
