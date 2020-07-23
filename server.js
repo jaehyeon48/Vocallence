@@ -12,6 +12,7 @@ app.use(express.json({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/auth', require('./routes/authRoute'));
+app.use('/api/word', require('./routes/wordRoute'));
 
 const PORT = process.env.PORT || 5000;
 
