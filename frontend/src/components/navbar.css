@@ -15,6 +15,17 @@
   font-weight: 700;
 }
 
+#navbar__add-new-word {
+  position: absolute;
+  left: 210px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+#navbar__add-new-word:hover {
+  color: #ead2b4;
+}
+
 #navbar__user {
   margin-right: 35px;
 }

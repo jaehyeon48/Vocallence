@@ -6,7 +6,7 @@ import { AuthContext } from '../context/AuthContext';
 
 import './navbar.css';
 
-export default function Navbar() {
+export default function Navbar(props) {
   const [authInfo, setAuthInfo] = useContext(AuthContext);
 
   async function handleLogout() {
@@ -22,8 +22,13 @@ export default function Navbar() {
     }
   }
 
+  function handleAddNewWord() {
+    props.setOpenAddWordModal(true);
+  }
+
   const ifAuthenticatedRender = (
     <React.Fragment>
+      <div id="navbar__add-new-word" onClick={handleAddNewWord}>Add Word</div>
       <div id="navbar__user">
         Hi,
         <span id="navbar__user__username">

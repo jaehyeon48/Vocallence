@@ -4,6 +4,19 @@ require('dotenv').config();
 
 const User = require('../models/UserModel');
 
+// @ROUTE         GET api/auth
+// @DESCRIPTION   check authentication
+// @ACCESS        Private
+async function isAuthenticatedController(req, res) {
+  try {
+    const user = await User.findById(req.user.id, '-password');
+    return res.status(200).json(user);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: 'Internal Server Error' });
+  }
+}
+
 // @ROUTE         POST api/auth/signup
 // @DESCRIPTION   Register user
 // @ACCESS        Public
@@ -83,6 +96,7 @@ function logoutController(req, res) {
 }
 
 module.exports = {
+  isAuthenticatedController,
   signUpController,
   loginController,
   logoutController
