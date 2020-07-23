@@ -18,4 +18,4 @@ function authCheck(req, res, next) {
   }
 }
 
-module.exports = auth;
+module.exports = authCheck;

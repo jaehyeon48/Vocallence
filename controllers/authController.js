@@ -36,4 +36,14 @@ async function loginController(req, res) {
   }
 }
 
-module.exports = { loginController };
+// @ROUTE         GET api/auth/logout
+// @DESCRIPTION   Logout the user
+// @ACCESS        Private
+function logoutController(req, res) {
+  res.status(200).cookie('token', '', { maxAge: '-1' }).json({ msg: 'Successfully logged out' });
+}
+
+module.exports = {
+  loginController,
+  logoutController
+};
