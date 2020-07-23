@@ -10,7 +10,7 @@ import DeleteButton from './DeleteButton';
 
 export default function MainPage() {
   return (
-    <React.Fragment>
+    <div id="main-container">
       <WordCount />
       <WordMeaning />
       <ShowPrevWord />
@@ -18,6 +18,6 @@ export default function MainPage() {
       <Examples />
       <EditButton />
       <DeleteButton />
-    </React.Fragment>
+    </div>
   );
 }
