@@ -247,6 +247,34 @@ a {
   margin: 15px 0 25px 0;
 }
 
+input:focus ~ .delete-example-button-container,
+input:valid ~ .delete-example-button-container {
+  position: absolute;
+  top: -20px;
+  left: 116px;
+  transition: all ease 0.3s;
+}
+
+input:not(focus) ~ .delete-example-button-container,
+input:not(valid) ~ .delete-example-button-container {
+  position: absolute;
+  top: 14px;
+  left: 116px;
+  transition: all ease 0.3s;
+}
+
+.delete-example-button {
+  position: relative;
+  height: 25px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.delete-example-button:hover > path {
+  fill: #b32929;
+  transition: fill 0.2s ease;
+}
+
 .add-word-form {
   font-size: 1.4rem;
   margin-top: 15px;
