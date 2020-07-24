@@ -142,24 +142,24 @@ export default function SignUp() {
       <h1 id="signup-title">Sign Up</h1>
       <form id="signup-form" onSubmit={handleSubmit}>
         <div id="signup-form__firstname-container">
-          <input className={firstNameErr ? "auth-form-input-error" : "auth-form-input"} type="text" name="firstName" value={firstName} onChange={handleChange} required />
-          <span className={firstNameErr ? "auth-form-label-error" : "auth-form-label"}>First Name</span>
-          {firstNameErr ? <small className="auth-error-notice"> - Please enter valid firstname.</small> : null}
+          <input className={firstNameErr ? "form-input-error" : "form-input"} type="text" name="firstName" value={firstName} onChange={handleChange} required />
+          <span className={firstNameErr ? "form-label-error" : "form-label"}>First Name</span>
+          {firstNameErr ? <small className="form-error-notice"> - Please enter valid firstname.</small> : null}
         </div>
         <div id="signup-form__lastname-container">
-          <input className={lastNameErr ? "auth-form-input-error" : "auth-form-input"} type="text" name="lastName" value={lastName} onChange={handleChange} required />
-          <span className={lastNameErr ? "auth-form-label-error" : "auth-form-label"}>Last Name</span>
-          {lastNameErr ? <small className="auth-error-notice"> - Please enter valid lastname.</small> : null}
+          <input className={lastNameErr ? "form-input-error" : "form-input"} type="text" name="lastName" value={lastName} onChange={handleChange} required />
+          <span className={lastNameErr ? "form-label-error" : "form-label"}>Last Name</span>
+          {lastNameErr ? <small className="form-error-notice"> - Please enter valid lastname.</small> : null}
         </div>
         <div id="signup-form__email-container">
-          <input className={emailErr ? "auth-form-input-error" : "auth-form-input"} type="text" name="email" value={email} onChange={handleChange} required />
-          <span className={emailErr ? "auth-form-label-error" : "auth-form-label"}>Email</span>
-          {emailErr ? <small className="auth-error-notice"> - Please enter valid email.</small> : null}
+          <input className={emailErr ? "form-input-error" : "form-input"} type="text" name="email" value={email} onChange={handleChange} required />
+          <span className={emailErr ? "form-label-error" : "form-label"}>Email</span>
+          {emailErr ? <small className="form-error-notice"> - Please enter valid email.</small> : null}
         </div>
         <div id="signup-form__password-container">
-          <input className={passwordErr ? "auth-form-input-error" : "auth-form-input"} type="password" name="password" value={password} onChange={handleChange} required />
-          <span className={passwordErr ? "auth-form-label-error" : "auth-form-label"}>Password</span>
-          {passwordErr ? <small className="auth-error-notice"> - Please enter valid password (at least 8 characters).</small> : null}
+          <input className={passwordErr ? "form-input-error" : "form-input"} type="password" name="password" value={password} onChange={handleChange} required />
+          <span className={passwordErr ? "form-label-error" : "form-label"}>Password</span>
+          {passwordErr ? <small className="form-error-notice"> - Please enter valid password (at least 8 characters).</small> : null}
         </div>
         <button id="signup-form__submit-button" type="submit" disabled={isSubmitDisabled}>Sign Up</button>
       </form>

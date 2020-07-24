@@ -42,7 +42,7 @@ a {
 }
 
 /* Auth (Sign-up and Login) form */
-.auth-form-input {
+.form-input {
   z-index: 99;
   padding: 10px;
   width: 100%;
@@ -55,7 +55,7 @@ a {
   position: relative;
 }
 
-.auth-form-input-error {
+.form-input-error {
   z-index: 99;
   padding: 10px;
   width: 100%;
@@ -68,23 +68,23 @@ a {
   position: relative;
 }
 
-.auth-form-input:focus,
-.auth-form-input:valid {
+.form-input:focus,
+.form-input:valid {
   border-bottom: 1px solid #36b682;
 }
 
-.auth-form-input-error:focus,
-.auth-form-input-error:valid {
+.form-input-error:focus,
+.form-input-error:valid {
   border-bottom: 1px solid #d4392a;
 }
 
-.auth-form-input:focus + .auth-form-label,
-.auth-form-input:valid + .auth-form-label {
+.form-input:focus + .form-label,
+.form-input:valid + .form-label {
   color: #36b682;
   top: -19px;
 }
 
-.auth-form-label {
+.form-label {
   z-index: 0;
   color: #fff;
   position: absolute;
@@ -93,7 +93,7 @@ a {
   transition: all ease 0.3s;
 }
 
-.auth-form-label-error {
+.form-label-error {
   z-index: 0;
   color: #d4392a;
   position: absolute;
@@ -102,13 +102,13 @@ a {
   transition: all ease 0.3s;
 }
 
-.auth-form-input-error:focus + .auth-form-label-error,
-.auth-form-input-error:valid + .auth-form-label-error {
+.form-input-error:focus + .form-label-error,
+.form-input-error:valid + .form-label-error {
   color: #d4392a;
   top: -19px;
 }
 
-.auth-error-notice {
+.form-error-notice {
   color: #d4392a;
   position: absolute;
   top: -14px;
@@ -118,21 +118,21 @@ a {
 
 /* Modal */
 #modal-background {
-  position: fixed; /* Stay in place */
-  z-index: 999; /* Sit on top */
+  position: fixed;
+  z-index: 999;
   left: 0;
   top: 0;
-  width: 100vw; /* Full width */
-  height: 100vh; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #000000; /* Fallback color */
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  background-color: #000000;
   opacity: 0.7;
 }
 
 #modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  background-color: #242b23;
+  margin: 15% auto;
+  padding: 15px;
   border: 1px solid #242b23;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
 }

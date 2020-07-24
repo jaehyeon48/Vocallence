@@ -126,14 +126,14 @@ export default function Login() {
         <h1 id="login-title">Login</h1>
         <form id="login-form" onSubmit={handleSubmit}>
           <div id="login-form__email-container">
-            <input className={emailErr ? "auth-form-input-error" : "auth-form-input"} type="text" name="email" value={email} onChange={handleChange} required />
-            <span className={emailErr ? "auth-form-label-error" : "auth-form-label"}>Email</span>
-            {emailErr ? <small className="auth-error-notice"> - Please enter valid email.</small> : null}
+            <input className={emailErr ? "form-input-error" : "form-input"} type="text" name="email" value={email} onChange={handleChange} required />
+            <span className={emailErr ? "form-label-error" : "form-label"}>Email</span>
+            {emailErr ? <small className="form-error-notice"> - Please enter valid email.</small> : null}
           </div>
           <div id="login-form__password-container">
-            <input className={passwordErr ? "auth-form-input-error" : "auth-form-input"} type="password" name="password" value={password} onChange={handleChange} required />
-            <span className={passwordErr ? "auth-form-label-error" : "auth-form-label"}>Password</span>
-            {passwordErr ? <small className="auth-error-notice"> - Please enter valid password (at least 8 characters).</small> : null}
+            <input className={passwordErr ? "form-input-error" : "form-input"} type="password" name="password" value={password} onChange={handleChange} required />
+            <span className={passwordErr ? "form-label-error" : "form-label"}>Password</span>
+            {passwordErr ? <small className="form-error-notice"> - Please enter valid password (at least 8 characters).</small> : null}
           </div>
           <button id="login-form__submit-button" type="submit" disabled={isSubmitDisabled}>Login</button>
         </form>
