@@ -7,6 +7,7 @@ import WordMeaning from './WordMeaning';
 import ShowPrevWord from './ShowPrevWord';
 import ShowNextWord from './ShowNextWord';
 import Examples from './Examples';
+import EditWordModal from '../EditWordModal';
 
 import './mainPage.css';
 
@@ -17,6 +18,7 @@ export default function MainPage() {
   const [authInfo, setAuthInfo] = useContext(AuthContext);
   const [wordList, setWordList] = useContext(WordListContext);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   useEffect(() => {
     let isMounted = true;
@@ -54,6 +56,10 @@ export default function MainPage() {
     }
   }
 
+  function openEditWordModal() {
+    setIsEditModalOpen(true);
+  }
+
   if (!authInfo.isAuthenticated) {
     return <Redirect to="/login" />
   }
@@ -64,18 +70,21 @@ export default function MainPage() {
   }
 
   return (
-    <div id="main-container">
-      <WordCount currentIndex={currentWordIndex} listLength={wordList.length} />
-      <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
-      <Examples wordList={wordList} currentIndex={currentWordIndex} />
-      <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} />
-      <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
-      <div id="main-container__buttons-container">
-        <button id="buttons-container__edit-button" type="button">EDIT</button>
-        <button id="buttons-container__delete-button" type="button" onClick={() => deleteWord(wordList[currentWordIndex])}>DELETE</button>
-        <button id="buttons-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
+    <React.Fragment>
+      {isEditModalOpen ? <EditWordModal word={wordList[currentWordIndex]} setEditModalOpen={setIsEditModalOpen} /> : null}
+      <div id="main-container">
+        <WordCount currentIndex={currentWordIndex} listLength={wordList.length} />
+        <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
+        <Examples wordList={wordList} currentIndex={currentWordIndex} />
+        <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} />
+        <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
+        <div id="main-container__buttons-container">
+          <button id="buttons-container__edit-button" type="button" onClick={openEditWordModal}>EDIT</button>
+          <button id="buttons-container__delete-button" type="button" onClick={() => deleteWord(wordList[currentWordIndex])}>DELETE</button>
+          <button id="buttons-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 }
 
