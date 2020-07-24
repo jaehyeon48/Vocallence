@@ -11,10 +11,11 @@ import Examples from './Examples';
 import './mainPage.css';
 
 import { AuthContext } from '../../context/AuthContext';
+import { WordListContext } from '../../context/WordListContext';
 
 export default function MainPage() {
   const [authInfo, setAuthInfo] = useContext(AuthContext);
-  const [wordList, setWordList] = useState([]);
+  const [wordList, setWordList] = useContext(WordListContext);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
   useEffect(() => {

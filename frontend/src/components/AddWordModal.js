@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
+
+import { WordListContext } from '../context/WordListContext';
 
 import './addWordModal.css';
 
@@ -10,6 +12,7 @@ export default function AddWordModal(props) {
     wordMeaning: '',
     examples: ['']
   });
+  const [wordList, setWordList] = useContext(WordListContext);
   const [wordNameErr, setWordNameErr] = useState(false);
   const [wordMeaningErr, setWordMeaningErr] = useState(false);
   const [alertDuplicateError, setAlertDuplicateError] = useState(false);
@@ -33,6 +36,7 @@ export default function AddWordModal(props) {
       const response = await axios.post('/api/word', reqBody, config);
       if (response.status === 201) {
         props.setOpenAddWordModal(false);
+        loadWordList();
       }
     } catch (error) {
       if (error.response.status === 400) {
@@ -42,6 +46,17 @@ export default function AddWordModal(props) {
         }, 3000);
       }
       console.error(error);
+    }
+  }
+
+  async function loadWordList() {
+    try {
+      const response = await axios.get('/api/word');
+      if (response.status === 200) {
+        setWordList(response.data);
+      }
+    } catch (error) {
+      console.log(error.response);
     }
   }
 

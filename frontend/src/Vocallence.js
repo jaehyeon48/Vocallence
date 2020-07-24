@@ -8,6 +8,7 @@ import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
 import AddWordModal from './components/AddWordModal';
 import { AuthProvider } from './context/AuthContext';
+import { WordListProvider } from './context/WordListContext';
 
 import './app.css';
 
@@ -15,18 +16,20 @@ export default function VOCAllence() {
   const [openAddWordModal, setOpenAddWordModal] = useState(false);
   return (
     <AuthProvider>
-      {openAddWordModal ? <AddWordModal setOpenAddWordModal={setOpenAddWordModal} /> : null}
-      <Router>
-        <Navbar setOpenAddWordModal={setOpenAddWordModal} />
-        <Route path="/" component={LandingPage} exact={true} />
-        <Switch>
-          <React.Fragment>
-            <Route path="/main" component={MainPage} exact={true} />
-            <Route path="/signup" component={SignUp} exact={true} />
-            <Route path="/login" component={Login} exact={true} />
-          </React.Fragment>
-        </Switch>
-      </Router>
+      <WordListProvider>
+        {openAddWordModal ? <AddWordModal setOpenAddWordModal={setOpenAddWordModal} /> : null}
+        <Router>
+          <Navbar setOpenAddWordModal={setOpenAddWordModal} />
+          <Route path="/" component={LandingPage} exact={true} />
+          <Switch>
+            <React.Fragment>
+              <Route path="/main" component={MainPage} exact={true} />
+              <Route path="/signup" component={SignUp} exact={true} />
+              <Route path="/login" component={Login} exact={true} />
+            </React.Fragment>
+          </Switch>
+        </Router>
+      </WordListProvider>
     </AuthProvider>
   );
 }
