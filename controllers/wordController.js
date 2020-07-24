@@ -24,7 +24,7 @@ async function addNewWord(req, res) {
   const { wordName, wordClass, wordMeaning, examples } = req.body;
   try {
     const isWordDuplicated = await Word.findOne({ wordName });
-
+    console.log(isWordDuplicated)
     if (isWordDuplicated) {
       return res.status(400).json({ msg: 'This word already exists in the list' });
     }
@@ -41,10 +41,6 @@ async function addNewWord(req, res) {
 
     res.json(addedWord);
   } catch (error) {
-    // if number of examples exceed by 3
-    if (error.errors) {
-      return res.status(400).json({ msg: 'Up to 3 examples can be stored.' });
-    }
     console.error(error);
     return res.status(500).json({ msg: 'Internal Server Error' });
   }
