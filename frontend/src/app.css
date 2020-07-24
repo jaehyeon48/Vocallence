@@ -136,3 +136,24 @@ a {
   width: 80%;
   position: relative;
 }
+
+/* select */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url('./img/select-arrow-down.svg') no-repeat 95% 50%;
+  width: 170px;
+  padding: 0.4em 0.5em;
+  font-family: inherit;
+  border: 1px solid #fff;
+}
+
+/* remove native arrow icon in IE 10, 11 */
+select::-ms-expand {
+  display: none;
+}
+
+option {
+  color: #000;
+}
