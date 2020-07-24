@@ -54,9 +54,9 @@ export default function MainPage() {
       <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} />
       <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
       <div id="main-container__buttons-container">
-        <button id="main-container__edit-button" type="button">EDIT</button>
-        <button id="main-container__delete-button" type="button">DELETE</button>
-        <button id="main-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
+        <button id="buttons-container__edit-button" type="button">EDIT</button>
+        <button id="buttons-container__delete-button" type="button">DELETE</button>
+        <button id="buttons-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
       </div>
     </div>
   );

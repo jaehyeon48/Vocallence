@@ -4,6 +4,6 @@ export default function ExampleItem({
   example
 }) {
   return (
-    <div className="example-item">{example}</div>
+    <li className="example-item">{example}</li>
   );
 }

@@ -8,12 +8,15 @@ export default function Examples({
 }) {
   return (
     <div id="main-container__examples-container">
-      {
-        wordList.length > 0 &&
-        wordList[currentIndex].examples.map((example, index) => (
-          <ExampleItem key={index} example={example} />
-        ))
-      }
+      <div id="examples-notice">Examples: </div>
+      <ul>
+        {
+          wordList.length > 0 &&
+          wordList[currentIndex].examples.map((example, index) => (
+            <ExampleItem key={index} example={example} />
+          ))
+        }
+      </ul>
     </div>
   );
 }
