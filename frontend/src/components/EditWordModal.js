@@ -16,6 +16,7 @@ export default function EditWordModal({
     examples: ['']
   });
   const [wordList, setWordList] = useContext(WordListContext);
+  const [originalName, setOriginalName] = useState('');
   const [wordNameErr, setWordNameErr] = useState(false);
   const [wordMeaningErr, setWordMeaningErr] = useState(false);
   const [alertDuplicateError, setAlertDuplicateError] = useState(false);
@@ -28,12 +29,14 @@ export default function EditWordModal({
         wordMeaning: word.wordMeaning,
         examples: word.examples
       });
+      setOriginalName(word.wordName);
     }
   }, [word])
 
   const { wordName, wordClass, wordMeaning, examples } = editWordFormData;
 
-  async function addNewWord(formData) {
+  async function editWord(formData) {
+    const wordId = word['_id'];
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -44,11 +47,12 @@ export default function EditWordModal({
       wordName: formData.wordName.toLowerCase(),
       wordClass: formData.wordClass,
       wordMeaning: formData.wordMeaning,
-      examples: formData.examples
+      examples: formData.examples,
+      originalName
     });
     try {
-      const response = await axios.post('/api/word', reqBody, config);
-      if (response.status === 201) {
+      const response = await axios.patch(`/api/word/${wordId}`, reqBody, config);
+      if (response.status === 200) {
         setEditModalOpen(false);
         loadWordList();
       }
@@ -58,6 +62,9 @@ export default function EditWordModal({
         setTimeout(() => {
           setAlertDuplicateError(false);
         }, 3000);
+      }
+      else if (error.response.status === 404) {
+        console.error('Word does not exist!');
       }
       console.error(error);
     }
@@ -77,7 +84,7 @@ export default function EditWordModal({
   function handleSubmit(e) {
     e.preventDefault();
 
-    addNewWord(editWordFormData);
+    editWord(editWordFormData);
   }
 
   function handleChange(e) {

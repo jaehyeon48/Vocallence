@@ -49,10 +49,28 @@ async function addNewWord(req, res) {
 // @DESCRIPTION   Edit a word
 // @ACCESS        Private
 async function editWord(req, res) {
+  const { wordName, wordClass, wordMeaning, examples, originalName } = req.body;
   try {
+    const word = await Word.findById(req.params.id);
 
+    if (!word) {
+      return res.status(404).json({ msg: 'Cannot find the word' });
+    }
+
+    const isWordDuplicated = await Word.findOne({ wordName });
+    if (isWordDuplicated && isWordDuplicated.wordName !== originalName) {
+      return res.status(400).json({ msg: 'This word already exists in the list' });
+    }
+
+    word.wordName = wordName;
+    word.wordClass = wordClass;
+    word.wordMeaning = wordMeaning;
+    word.examples = examples;
+
+    await word.save();
+    return res.status(200).json(word);
   } catch (error) {
-
+    return res.status(500).json({ msg: 'Internal Server Error' });
   }
 }
 
