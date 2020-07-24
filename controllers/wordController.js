@@ -24,7 +24,6 @@ async function addNewWord(req, res) {
   const { wordName, wordClass, wordMeaning, examples } = req.body;
   try {
     const isWordDuplicated = await Word.findOne({ wordName });
-    console.log(isWordDuplicated)
     if (isWordDuplicated) {
       return res.status(400).json({ msg: 'This word already exists in the list' });
     }
