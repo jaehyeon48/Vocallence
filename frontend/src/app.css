@@ -228,8 +228,9 @@ a {
   height: inherit;
 }
 
-.examples-container__add-button:hover > .example-add-button__icon + path {
+.examples-container__add-button:hover > .example-add-button__icon > path {
   fill: #92a12f;
+  transition: all 0.3s ease;
 }
 
 .example-container-1 {
