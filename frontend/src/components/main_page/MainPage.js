@@ -22,7 +22,6 @@ export default function MainPage() {
     let isMounted = true;
     if (isMounted) {
       loadWordList();
-      setWordList(shuffleList(wordList));
     }
     return () => isMounted = false;
   }, []);
@@ -38,16 +37,20 @@ export default function MainPage() {
     }
   }
 
-  async function deleteWord(wordId) {
-    try {
-      const response = await axios.delete(`/api/word/${wordId}`);
+  async function deleteWord(word) {
+    const wordName = word.wordName;
+    const wordId = word['_id'];
+    if (window.confirm(`Do you want to delete the word '${wordName}'?`)) {
+      try {
+        const response = await axios.delete(`/api/word/${wordId}`);
 
-      if (response.status === 200) {
-        setCurrentWordIndex(0);
-        loadWordList();
+        if (response.status === 200) {
+          setCurrentWordIndex(0);
+          loadWordList();
+        }
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
     }
   }
 
@@ -69,7 +72,7 @@ export default function MainPage() {
       <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
       <div id="main-container__buttons-container">
         <button id="buttons-container__edit-button" type="button">EDIT</button>
-        <button id="buttons-container__delete-button" type="button" onClick={() => deleteWord(wordList[currentWordIndex]['_id'])}>DELETE</button>
+        <button id="buttons-container__delete-button" type="button" onClick={() => deleteWord(wordList[currentWordIndex])}>DELETE</button>
         <button id="buttons-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
       </div>
     </div>
