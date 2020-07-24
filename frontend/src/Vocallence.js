@@ -15,7 +15,7 @@ export default function VOCAllence() {
   const [openAddWordModal, setOpenAddWordModal] = useState(false);
   return (
     <AuthProvider>
-      {openAddWordModal ? <AddWordModal /> : null}
+      {openAddWordModal ? <AddWordModal setOpenAddWordModal={setOpenAddWordModal} /> : null}
       <Router>
         <Navbar setOpenAddWordModal={setOpenAddWordModal} />
         <Route path="/" component={LandingPage} exact={true} />
