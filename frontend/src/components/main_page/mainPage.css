@@ -120,12 +120,46 @@
 
 #buttons-container__edit-button {
   grid-column: 14 / span 6;
+  background-color: #e6a23d;
+  border: none;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  color: #000;
+  padding: 10px;
+  font-size: 1.2rem;
+  transition: background-color 0.25s ease;
+}
+
+#buttons-container__edit-button:hover {
+  background-color: #c28832;
 }
 
 #buttons-container__delete-button {
   grid-column: 21 / span 6;
+  background-color: #dd3535;
+  border: none;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.2rem;
+  transition: background-color 0.25s ease;
+}
+
+#buttons-container__delete-button:hover {
+  background-color: #bd3a3a;
 }
 
 #buttons-container__shuffle-button {
   grid-column: 33 / span 6;
+  background-color: #f2e3bd;
+  border: none;
+  border-radius: 0.35rem;
+  cursor: pointer;
+  color: #000;
+  font-size: 1.2rem;
+  transition: background-color 0.25s ease;
+}
+
+#buttons-container__shuffle-button:hover {
+  background-color: #cebb86;
 }
