@@ -1,7 +1,9 @@
 import React from 'react';
 
-export default function ExampleItem() {
+export default function ExampleItem({
+  example
+}) {
   return (
-    <div></div>
+    <div className="example-item">{example}</div>
   );
 }

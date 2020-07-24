@@ -1,7 +1,14 @@
 import React from 'react';
 
-export default function WordMeaning() {
+export default function WordMeaning({
+  wordList,
+  currentIndex
+}) {
   return (
-    <div></div>
+    <div id="main-container__word">
+      <div id="main-container__word-name">{wordList.length > 0 && wordList[currentIndex].wordName}</div>
+      <div id="main-container__word-class">{wordList.length > 0 && wordList[currentIndex].wordClass}</div>
+      <div id="main-container__word-meaning">{wordList.length > 0 && wordList[currentIndex].wordMeaning}</div>
+    </div>
   );
 }
