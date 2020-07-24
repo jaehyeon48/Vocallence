@@ -63,13 +63,16 @@ async function deleteWord(req, res) {
   try {
     const wordId = req.params.id;
     await Word.findByIdAndRemove(wordId);
-    return
+    return res.send('Deletion success');
   } catch (error) {
-
+    console.error(error);
+    res.status(500).json(error);
   }
 }
 
 module.exports = {
   getWordsController,
-  addNewWord
+  addNewWord,
+  editWord,
+  deleteWord
 };
