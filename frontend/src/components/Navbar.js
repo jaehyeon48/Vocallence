@@ -10,15 +10,20 @@ export default function Navbar(props) {
   const [authInfo, setAuthInfo] = useContext(AuthContext);
 
   async function handleLogout() {
-    try {
-      await axios('/api/auth/logout');
+    if (authInfo.isAuthenticated) {
+      try {
+        const response = await axios('/api/auth/logout');
 
-      setAuthInfo({
-        isAuthenticated: false,
-        user: null
-      });
-    } catch (error) {
-      console.error(error);
+        setAuthInfo({
+          isAuthenticated: false,
+          user: null
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    else {
+      return;
     }
   }
 

@@ -20,11 +20,16 @@ export function AuthProvider(props) {
           })
         }
       } catch (error) {
-        console.error(error.response);
+        if (error.response.status === 401) {
+          setAuthInfo({
+            isAuthenticated: false,
+            user: null
+          });
+        }
       }
     }
     checkingAuthStatus();
-  });
+  }, []);
 
   return (
     <AuthContext.Provider value={[authInfo, setAuthInfo]}>
