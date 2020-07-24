@@ -38,10 +38,34 @@ async function addNewWord(req, res) {
 
     const addedWord = await newWord.save();
 
-    res.json(addedWord);
+    res.status(201).json(addedWord);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ msg: 'Internal Server Error' });
+  }
+}
+
+// @ROUTE         PATCH api/word/:id
+// @DESCRIPTION   Edit a word
+// @ACCESS        Private
+async function editWord(req, res) {
+  try {
+
+  } catch (error) {
+
+  }
+}
+
+// @ROUTE         DELETE api/word/:id
+// @DESCRIPTION   Delete a word
+// @ACCESS        Private
+async function deleteWord(req, res) {
+  try {
+    const wordId = req.params.id;
+    await Word.findByIdAndRemove(wordId);
+    return
+  } catch (error) {
+
   }
 }
 

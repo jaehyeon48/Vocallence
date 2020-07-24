@@ -31,7 +31,7 @@ export default function AddWordModal(props) {
     });
     try {
       const response = await axios.post('/api/word', reqBody, config);
-      if (response.status === 200) {
+      if (response.status === 201) {
         props.setOpenAddWordModal(false);
       }
     } catch (error) {
