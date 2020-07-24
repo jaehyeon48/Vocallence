@@ -13,6 +13,12 @@
   top: 12px;
 }
 
+#modal-content__alert-duplicate {
+  color: #d4392a;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
 #add-word-container {
   width: 80vw;
   margin: 35px auto;
@@ -46,7 +52,7 @@
   margin: 27px 0 0 0;
 }
 
-#examples-container__notice-max {
+#examples-container__notice-max-number {
   position: absolute;
   top: 29px;
   left: 170px;
@@ -107,8 +113,17 @@
 
 #word-class-container__select-word-class {
   position: absolute;
-  top: 24px;
+  top: 15px;
   left: 193px;
+  color: #fff;
+  border-radius: 0.3rem;
+  width: 200px;
+  cursor: pointer;
+}
+
+#word-class-container__select-word-class:hover {
+  box-shadow: 0 0 2px 4px #2063b9;
+  background: url('../img/select-arrow-down-white.svg') no-repeat 95% 50%;
 }
 
 #add-word-form__submit-button {
