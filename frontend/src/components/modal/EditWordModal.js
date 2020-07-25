@@ -147,7 +147,7 @@ export default function EditWordModal({
   function handleExampleChange(e) {
     let changedExamples = [...examples];
     let index = e.target.dataset.index;
-    changedExamples[index - 1].sentence = e.target.value;
+    changedExamples[index].sentence = e.target.value;
     setEditWordFormData({
       ...editWordFormData,
       examples: changedExamples

@@ -165,3 +165,10 @@
 #buttons-container__shuffle-button:hover {
   background-color: #cebb86;
 }
+
+#notice-empty-list {
+  color: #c7dc44;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+}

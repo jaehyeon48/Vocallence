@@ -72,18 +72,20 @@ export default function MainPage() {
   return (
     <React.Fragment>
       {isEditModalOpen ? <EditWordModal word={wordList[currentWordIndex]} setEditModalOpen={setIsEditModalOpen} /> : null}
-      <div id="main-container">
-        <WordCount currentIndex={currentWordIndex} listLength={wordList.length} />
-        <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
-        <Examples wordList={wordList} currentIndex={currentWordIndex} />
-        <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} />
-        <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
-        <div id="main-container__buttons-container">
-          <button id="buttons-container__edit-button" type="button" onClick={openEditWordModal}>EDIT</button>
-          <button id="buttons-container__delete-button" type="button" onClick={() => deleteWord(wordList[currentWordIndex])}>DELETE</button>
-          <button id="buttons-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
+      {wordList && wordList.length > 0 ? (
+        <div id="main-container">
+          <WordCount currentIndex={currentWordIndex} listLength={wordList.length} />
+          <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
+          <Examples wordList={wordList} currentIndex={currentWordIndex} />
+          <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} />
+          <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
+          <div id="main-container__buttons-container">
+            <button id="buttons-container__edit-button" type="button" onClick={openEditWordModal}>EDIT</button>
+            <button id="buttons-container__delete-button" type="button" onClick={() => deleteWord(wordList[currentWordIndex])}>DELETE</button>
+            <button id="buttons-container__shuffle-button" type="button" onClick={handleShuffle}>SHUFFLE!</button>
+          </div>
         </div>
-      </div>
+      ) : <p id="notice-empty-list">The vocabulary list is empty! Why don't you add a new word?</p>}
     </React.Fragment>
   );
 }
