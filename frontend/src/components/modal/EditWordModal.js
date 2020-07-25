@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
-import { WordListContext } from '../context/WordListContext';
+import { WordListContext } from '../../context/WordListContext';
 
 import './editWordModal.css';
 
@@ -20,6 +20,10 @@ export default function EditWordModal({
   const [wordNameErr, setWordNameErr] = useState(false);
   const [wordMeaningErr, setWordMeaningErr] = useState(false);
   const [alertDuplicateError, setAlertDuplicateError] = useState(false);
+  const [isFirstSubmit, setIsFirstSubmit] = useState(true);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+
+  const { wordName, wordClass, wordMeaning, examples } = editWordFormData;
 
   useEffect(() => {
     if (word) {
@@ -31,9 +35,35 @@ export default function EditWordModal({
       });
       setOriginalName(word.wordName);
     }
-  }, [word])
+  }, [word]);
 
-  const { wordName, wordClass, wordMeaning, examples } = editWordFormData;
+  useEffect(() => {
+    if (!isFirstSubmit && wordName.trim() === '') {
+      setWordNameErr(true);
+    }
+    else if (!isFirstSubmit && wordName.trim() !== '') {
+      setWordNameErr(false);
+    }
+  }, [isFirstSubmit, wordName]);
+
+  useEffect(() => {
+    if (!isFirstSubmit && wordMeaning.trim() === '') {
+      setWordMeaningErr(true);
+    }
+    else if (!isFirstSubmit && wordMeaning.trim() !== '') {
+      setWordMeaningErr(false);
+    }
+  }, [isFirstSubmit, wordMeaning]);
+
+  useEffect(() => {
+    if (!isFirstSubmit && (wordNameErr || wordMeaningErr)) {
+      setIsSubmitDisabled(true);
+    }
+    else {
+      setIsSubmitDisabled(false);
+    }
+  }, [isFirstSubmit, wordNameErr, wordMeaningErr]);
+
 
   async function editWord(formData) {
     const wordId = word['_id'];
@@ -84,7 +114,23 @@ export default function EditWordModal({
   function handleSubmit(e) {
     e.preventDefault();
 
-    editWord(editWordFormData);
+    if (isFirstSubmit) {
+      setIsFirstSubmit(false);
+      setIsSubmitDisabled(true);
+
+      if (wordName.trim() === '') {
+        setWordNameErr(true);
+      }
+      if (wordMeaning.trim() === '') {
+        setWordMeaningErr(true);
+      }
+      else {
+        editWord(editWordFormData);
+      }
+    }
+    else {
+      editWord(editWordFormData);
+    }
   }
 
   function handleChange(e) {
@@ -145,9 +191,9 @@ export default function EditWordModal({
               {wordNameErr ? <small className="form-error-notice"> - Please enter valclassName wordName.</small> : null}
             </div>
             <div className="modal-word-form__word-meaning-container">
-              <input className={wordNameErr ? "form-input-error" : "form-input"} type="text" name="wordMeaning" value={wordMeaning} onChange={handleChange} required />
+              <input className={wordMeaningErr ? "form-input-error" : "form-input"} type="text" name="wordMeaning" value={wordMeaning} onChange={handleChange} required />
               <span className={wordMeaningErr ? "form-label-error" : "form-label"}>Word Meaning</span>
-              {wordMeaningErr ? <small className="form-error-notice"> - Please enter valid wordMeaning.</small> : null}
+              {wordMeaningErr ? <small className="form-error-notice form-error-notice__word-meaning"> - Please enter valid wordMeaning.</small> : null}
             </div>
             <div className="modal-word-form__examples-container">
               <p className="examples-container__title">Examples: </p>
@@ -181,7 +227,7 @@ export default function EditWordModal({
                 <option value="Article">Article</option>
               </select>
             </div>
-            <button className="add-word-form__submit-button" type="submit">Edit Word</button>
+            <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Edit Word</button>
           </form>
         </div>
       </div>

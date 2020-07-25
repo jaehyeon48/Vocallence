@@ -7,7 +7,7 @@ import WordMeaning from './WordMeaning';
 import ShowPrevWord from './ShowPrevWord';
 import ShowNextWord from './ShowNextWord';
 import Examples from './Examples';
-import EditWordModal from '../EditWordModal';
+import EditWordModal from '../modal/EditWordModal';
 
 import './mainPage.css';
 

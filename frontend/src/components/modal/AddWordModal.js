@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
 
-import { WordListContext } from '../context/WordListContext';
+import { WordListContext } from '../../context/WordListContext';
 
 export default function AddWordModal(props) {
   const [addWordFormData, setAddWordFormData] = useState({
@@ -14,8 +14,39 @@ export default function AddWordModal(props) {
   const [wordNameErr, setWordNameErr] = useState(false);
   const [wordMeaningErr, setWordMeaningErr] = useState(false);
   const [alertDuplicateError, setAlertDuplicateError] = useState(false);
+  const [isFirstSubmit, setIsFirstSubmit] = useState(true);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
   const { wordName, wordClass, wordMeaning, examples } = addWordFormData;
+
+  useEffect(() => {
+    if (!isFirstSubmit && wordName.trim() === '') {
+      setWordNameErr(true);
+    }
+    else if (!isFirstSubmit && wordName.trim() !== '') {
+      setWordNameErr(false);
+    }
+  }, [isFirstSubmit, wordName]);
+
+  useEffect(() => {
+    if (!isFirstSubmit && wordMeaning.trim() === '') {
+      setWordMeaningErr(true);
+    }
+    else if (!isFirstSubmit && wordMeaning.trim() !== '') {
+      setWordMeaningErr(false);
+    }
+  }, [isFirstSubmit, wordMeaning]);
+
+  useEffect(() => {
+    if (!isFirstSubmit && (wordNameErr || wordMeaningErr)) {
+      setIsSubmitDisabled(true);
+    }
+    else {
+      setIsSubmitDisabled(false);
+    }
+  }, [isFirstSubmit, wordNameErr, wordMeaningErr]);
+
+
 
   async function addNewWord(formData) {
     const config = {
@@ -61,7 +92,23 @@ export default function AddWordModal(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    addNewWord(addWordFormData);
+    if (isFirstSubmit) {
+      setIsFirstSubmit(false);
+      setIsSubmitDisabled(true);
+
+      if (wordName.trim() === '') {
+        setWordNameErr(true);
+      }
+      if (wordMeaning.trim() === '') {
+        setWordMeaningErr(true);
+      }
+      else {
+        addNewWord(addWordFormData);
+      }
+    }
+    else {
+      addNewWord(addWordFormData);
+    }
   }
 
   function handleChange(e) {
@@ -97,6 +144,17 @@ export default function AddWordModal(props) {
     }
   }
 
+  function handleDeleteExample(e) {
+    let index = e.target.dataset.index;
+    let newExamples = [...examples];
+
+    newExamples.splice(index, 1);
+    setAddWordFormData({
+      ...addWordFormData,
+      examples: newExamples
+    });
+  }
+
   return (
     <div className="modal-background">
       <div className="modal-content">
@@ -112,9 +170,9 @@ export default function AddWordModal(props) {
               {wordNameErr ? <small className="form-error-notice"> - Please enter valid wordName.</small> : null}
             </div>
             <div className="add-word-form__word-meaning-container">
-              <input className={wordNameErr ? "form-input-error" : "form-input"} type="text" name="wordMeaning" value={wordMeaning} onChange={handleChange} required />
+              <input className={wordMeaningErr ? "form-input-error" : "form-input"} type="text" name="wordMeaning" value={wordMeaning} onChange={handleChange} required />
               <span className={wordMeaningErr ? "form-label-error" : "form-label"}>Word Meaning</span>
-              {wordMeaningErr ? <small className="form-error-notice"> - Please enter valid wordMeaning.</small> : null}
+              {wordMeaningErr ? <small className="form-error-notice form-error-notice__word-meaning"> - Please enter valid wordMeaning.</small> : null}
             </div>
             <div className="add-word-form__examples-container">
               <p className="examples-container__title">Examples: </p>
@@ -127,6 +185,9 @@ export default function AddWordModal(props) {
                   <div className={`example-container-${index + 1}`} key={`example${index + 1}`}>
                     <input className={`example-${index + 1} form-input`} name={`example${index + 1}`} value={examples[index]} onChange={handleExampleChange} data-index={index + 1} required />
                     <span className="form-label">{`Example${index + 1}`}</span>
+                    <span className="delete-example-button-container">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus-square" className="svg-inline--fa fa-minus-square fa-w-14 delete-example-button" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" onClick={handleDeleteExample} data-index={index}><path fill="#dd3535" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM92 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H92z"></path></svg>
+                    </span>
                   </div>
                 ))
               }
@@ -145,7 +206,7 @@ export default function AddWordModal(props) {
                 <option value="Article">Article</option>
               </select>
             </div>
-            <button className="add-word-form__submit-button" type="submit">Add New Word</button>
+            <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Add New Word</button>
           </form>
         </div>
       </div>

@@ -6,7 +6,7 @@ import LandingPage from './components/Landing';
 import MainPage from './components/main_page/MainPage';
 import SignUp from './components/auth/SignUp';
 import Login from './components/auth/Login';
-import AddWordModal from './components/AddWordModal';
+import AddWordModal from './components/modal/AddWordModal';
 import { AuthProvider } from './context/AuthContext';
 import { WordListProvider } from './context/WordListContext';
 

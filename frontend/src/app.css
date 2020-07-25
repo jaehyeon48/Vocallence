@@ -116,6 +116,10 @@ a {
   left: 135px;
 }
 
+.form-error-notice__word-meaning {
+  left: 169px;
+}
+
 /* Modal */
 .modal-background {
   position: fixed;
@@ -336,6 +340,12 @@ input:not(valid) ~ .delete-example-button-container {
 .add-word-form__submit-button:hover {
   background-color: #aa4c2a;
   color: #ffffff;
+}
+
+.add-word-form__submit-button:disabled {
+  background-color: #72321a;
+  color: #b6acac;
+  cursor: not-allowed;
 }
 
 /* select */
