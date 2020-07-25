@@ -7,7 +7,9 @@ export default function ShowNextWord({
 }) {
 
   function turnNextWord() {
-    if (currentIndex > listLength - 2) return;
+    if (currentIndex > listLength - 2) {
+      setWordIndex(0);
+    }
     else {
       setWordIndex(currentIndex + 1);
     }

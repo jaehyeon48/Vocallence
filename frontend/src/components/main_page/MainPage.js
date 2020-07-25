@@ -77,7 +77,7 @@ export default function MainPage() {
           <WordCount currentIndex={currentWordIndex} listLength={wordList.length} />
           <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
           <Examples wordList={wordList} currentIndex={currentWordIndex} />
-          <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} />
+          <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
           <ShowNextWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
           <div id="main-container__buttons-container">
             <button id="buttons-container__edit-button" type="button" onClick={openEditWordModal}>EDIT</button>

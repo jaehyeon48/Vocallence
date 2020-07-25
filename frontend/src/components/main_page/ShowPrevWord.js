@@ -2,10 +2,13 @@ import React from 'react';
 
 export default function ShowPrevWord({
   currentIndex,
-  setWordIndex
+  setWordIndex,
+  listLength
 }) {
   function turnPrevWord() {
-    if (currentIndex < 1) return;
+    if (currentIndex < 1) {
+      setWordIndex(listLength - 1);
+    }
     else {
       setWordIndex(currentIndex - 1);
     }
