@@ -9,7 +9,7 @@
 #main-container {
   display: grid;
   grid-template-columns: repeat(40, 1fr);
-  grid-template-rows: 20px 40px 150px 150px 1fr 50px 30px;
+  grid-template-rows: 20px 40px 150px 1fr 1fr 50px 30px;
   margin: 30px 15px;
 }
 
@@ -21,21 +21,22 @@
 
 #main-container__word {
   grid-row: 3;
-  grid-column: 11 / span 20;
+  grid-column: 5 / span 32;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 110px 28px 50px 60px;
+  grid-template-rows: 1fr 28px 50px 1fr;
 }
 
 #main-container__word-name {
   grid-row: 1;
   grid-column: 1 / span 10;
   color: #67bdcc;
-  font-size: 6rem;
+  font-size: 5.6rem;
   font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
+  word-break: break-all;
 }
 
 #main-container__word-class {
@@ -52,6 +53,7 @@
   font-size: 2.3rem;
   font-weight: 500;
   text-align: center;
+  margin-top: 15px;
 }
 
 #main-container__examples-container {
@@ -61,13 +63,14 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  margin-top: 35px;
 }
 
 #examples-notice {
   margin-bottom: 30px;
   color: #ddcb27;
   text-align: center;
-  font-size: 1.7rem;
+  font-size: 1.9rem;
 }
 
 #examples-notice + ul {
@@ -89,7 +92,7 @@
 }
 
 #prev-button {
-  height: 70px;
+  height: 80px;
 }
 
 #next-word-button-container {
@@ -100,7 +103,7 @@
 }
 
 #next-button {
-  height: 70px;
+  height: 80px;
 }
 
 .turn-word-button {
