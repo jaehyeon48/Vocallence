@@ -96,7 +96,7 @@
 #prev-word-button-container {
   display: flex;
   align-items: center;
-  grid-row: 4 / span 1;
+  grid-row: 3 / span 1;
   grid-column: 2 / span 1;
 }
 
@@ -107,7 +107,7 @@
 #next-word-button-container {
   display: flex;
   align-items: center;
-  grid-row: 4 / span 1;
+  grid-row: 3 / span 1;
   grid-column: 39 / span 1;
 }
 
