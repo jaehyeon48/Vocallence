@@ -24,7 +24,7 @@
   grid-column: 5 / span 32;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 1fr 28px 50px 1fr;
+  grid-template-rows: 1fr 28px 50px 85px;
 }
 
 #main-container__word-name {
@@ -63,7 +63,6 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  margin-top: 35px;
 }
 
 #examples-notice {
