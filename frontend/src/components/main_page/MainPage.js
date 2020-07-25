@@ -19,6 +19,7 @@ export default function MainPage() {
   const [wordList, setWordList] = useContext(WordListContext);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  let nthWordInput = React.createRef();
 
   useEffect(() => {
     let isMounted = true;
@@ -69,12 +70,31 @@ export default function MainPage() {
     setWordList(shuffleList(wordList));
   }
 
+  function handleMoveToNthWord() {
+    const nthWordIndex = Number(nthWordInput.current.value);
+
+    if (nthWordIndex < 1 || nthWordIndex > wordList.length) {
+      alert('Word number is invalid!');
+      nthWordInput.current.focus();
+      return;
+    }
+    else {
+      setCurrentWordIndex(nthWordIndex - 1);
+    }
+  }
+
   return (
     <React.Fragment>
       {isEditModalOpen ? <EditWordModal word={wordList[currentWordIndex]} setEditModalOpen={setIsEditModalOpen} /> : null}
       {wordList && wordList.length > 0 ? (
         <div id="main-container">
           <WordCount currentIndex={currentWordIndex} listLength={wordList.length} />
+          <div id="main-container__move-to-nth-word">
+            Go on to
+            <input type="number" name="nthWord" ref={nthWordInput} min="1" max={wordList.length} step="1" />
+            th word
+            <button id="move-to-nth-word-button" onClick={handleMoveToNthWord}>Go!</button>
+          </div>
           <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
           <Examples wordList={wordList} currentIndex={currentWordIndex} />
           <ShowPrevWord currentIndex={currentWordIndex} setWordIndex={setCurrentWordIndex} listLength={wordList.length} />
