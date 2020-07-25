@@ -6,7 +6,7 @@ const wordSchema = new mongoose.Schema({
   wordMeaning: { type: String, required: true },
   examples: {
     type: [{
-      type: String
+      type: Object
     }],
     validate: [examplesLimit, 'Up to 3 examples can be stored.']
   },

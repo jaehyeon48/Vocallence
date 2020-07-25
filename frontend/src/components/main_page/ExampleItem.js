@@ -4,6 +4,6 @@ export default function ExampleItem({
   example
 }) {
   return (
-    <li className="example-item">{example}</li>
+    <li className="example-item">{example.sentence}</li>
   );
 }

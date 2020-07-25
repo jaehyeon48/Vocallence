@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import axios from 'axios';
-
+import { v4 as uuidv4 } from 'uuid';
 import { WordListContext } from '../../context/WordListContext';
 
 export default function AddWordModal(props) {
@@ -8,7 +8,10 @@ export default function AddWordModal(props) {
     wordName: '',
     wordClass: 'Noun',
     wordMeaning: '',
-    examples: ['']
+    examples: [{
+      id: uuidv4(),
+      sentence: ''
+    }]
   });
   const [wordList, setWordList] = useContext(WordListContext);
   const [wordNameErr, setWordNameErr] = useState(false);
@@ -45,8 +48,6 @@ export default function AddWordModal(props) {
       setIsSubmitDisabled(false);
     }
   }, [isFirstSubmit, wordNameErr, wordMeaningErr]);
-
-
 
   async function addNewWord(formData) {
     const config = {
@@ -119,12 +120,12 @@ export default function AddWordModal(props) {
   }
 
   function handleExampleChange(e) {
-    let examples = [...addWordFormData.examples];
+    let changedExamples = [...examples];
     let index = e.target.dataset.index;
-    examples[index - 1] = e.target.value;
+    changedExamples[index - 1].sentence = e.target.value;
     setAddWordFormData({
       ...addWordFormData,
-      examples
+      examples: changedExamples
     });
   }
 
@@ -139,16 +140,16 @@ export default function AddWordModal(props) {
     else {
       setAddWordFormData({
         ...addWordFormData,
-        examples: [...examples, '']
+        examples: [...examples, {
+          id: uuidv4(),
+          sentence: ''
+        }]
       });
     }
   }
 
-  function handleDeleteExample(e) {
-    let index = e.target.dataset.index;
-    let newExamples = [...examples];
-
-    newExamples.splice(index, 1);
+  function handleDeleteExample(exampleID) {
+    let newExamples = examples.filter(example => example.id !== exampleID);
     setAddWordFormData({
       ...addWordFormData,
       examples: newExamples
@@ -181,12 +182,12 @@ export default function AddWordModal(props) {
                 <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus-square" className="svg-inline--fa fa-plus-square fa-w-14 example-add-button__icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="#C7DC44" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm-32 252c0 6.6-5.4 12-12 12h-92v92c0 6.6-5.4 12-12 12h-56c-6.6 0-12-5.4-12-12v-92H92c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h92v-92c0-6.6 5.4-12 12-12h56c6.6 0 12 5.4 12 12v92h92c6.6 0 12 5.4 12 12v56z"></path></svg>
               </span>
               {
-                examples.map((val, index) => (
-                  <div className={`example-container-${index + 1}`} key={`example${index + 1}`}>
-                    <input className={`example-${index + 1} form-input`} name={`example${index + 1}`} value={examples[index]} onChange={handleExampleChange} data-index={index + 1} required />
+                examples.map((example, index) => (
+                  <div className={`example-container-${index + 1}`} key={example.id}>
+                    <input className={`example-${index + 1} form-input`} name={`example${index + 1}`} value={example.sentence} onChange={handleExampleChange} data-index={index + 1} required />
                     <span className="form-label">{`Example${index + 1}`}</span>
                     <span className="delete-example-button-container">
-                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus-square" className="svg-inline--fa fa-minus-square fa-w-14 delete-example-button" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" onClick={handleDeleteExample} data-index={index}><path fill="#dd3535" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM92 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H92z"></path></svg>
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="minus-square" className="svg-inline--fa fa-minus-square fa-w-14 delete-example-button" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" onClick={() => handleDeleteExample(example.id)}><path fill="#dd3535" d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM92 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H92z"></path></svg>
                     </span>
                   </div>
                 ))
