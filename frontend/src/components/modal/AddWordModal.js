@@ -3,11 +3,14 @@ import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { WordListContext } from '../../context/WordListContext';
 
-export default function AddWordModal(props) {
+export default function AddWordModal({
+  setOpenAddWordModal,
+}) {
   const [addWordFormData, setAddWordFormData] = useState({
     wordName: '',
     wordClass: 'Noun',
     wordMeaning: '',
+    isFormal: false,
     examples: [{
       id: uuidv4(),
       sentence: ''
@@ -20,7 +23,7 @@ export default function AddWordModal(props) {
   const [isFirstSubmit, setIsFirstSubmit] = useState(true);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
-  const { wordName, wordClass, wordMeaning, examples } = addWordFormData;
+  const { wordName, wordClass, wordMeaning, isFormal, examples } = addWordFormData;
 
   useEffect(() => {
     if (!isFirstSubmit && wordName.trim() === '') {
@@ -60,12 +63,13 @@ export default function AddWordModal(props) {
       wordName: formData.wordName.toLowerCase(),
       wordClass: formData.wordClass,
       wordMeaning: formData.wordMeaning,
+      isFormal: formData.isFormal,
       examples: formData.examples
     });
     try {
       const response = await axios.post('/api/word', reqBody, config);
       if (response.status === 201) {
-        props.setOpenAddWordModal(false);
+        setOpenAddWordModal(false);
         loadWordList();
       }
     } catch (error) {
@@ -113,10 +117,27 @@ export default function AddWordModal(props) {
   }
 
   function handleChange(e) {
-    setAddWordFormData({
-      ...addWordFormData,
-      [e.target.name]: e.target.value
-    });
+    const targetName = e.target.name;
+    const targetValue = e.target.value;
+    if (targetName === 'isFormal') {
+      let formality;
+      if (targetValue === 'true') {
+        formality = true;
+      }
+      else {
+        formality = false;
+      }
+      setAddWordFormData({
+        ...addWordFormData,
+        [targetName]: formality
+      });
+    }
+    else {
+      setAddWordFormData({
+        ...addWordFormData,
+        [targetName]: targetValue
+      });
+    }
   }
 
   function handleExampleChange(e) {
@@ -130,7 +151,7 @@ export default function AddWordModal(props) {
   }
 
   function handleExitModal() {
-    props.setOpenAddWordModal(false);
+    setOpenAddWordModal(false);
   }
 
   function handleAddExampleField() {
@@ -207,6 +228,12 @@ export default function AddWordModal(props) {
                 <option value="Article">Article</option>
                 <option value="Phrasal verb">Phrasal verb</option>
               </select>
+            </div>
+            <div className="word-formality-container">
+              NOT Formal:
+              <input type="radio" name="isFormal" value="false" checked={!isFormal} onChange={handleChange} />
+              Formal:
+              <input type="radio" name="isFormal" value="true" checked={isFormal} onChange={handleChange} />
             </div>
             <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Add New Word</button>
           </form>

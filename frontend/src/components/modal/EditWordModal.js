@@ -14,6 +14,7 @@ export default function EditWordModal({
     wordName: '',
     wordClass: 'Noun',
     wordMeaning: '',
+    isFormal: false,
     examples: [{
       id: uuidv4(),
       sentence: ''
@@ -27,7 +28,8 @@ export default function EditWordModal({
   const [isFirstSubmit, setIsFirstSubmit] = useState(true);
   const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
 
-  const { wordName, wordClass, wordMeaning, examples } = editWordFormData;
+  const { wordName, wordClass, wordMeaning, isFormal, examples } = editWordFormData;
+
 
   useEffect(() => {
     if (word) {
@@ -35,6 +37,7 @@ export default function EditWordModal({
         wordName: word.wordName,
         wordClass: word.wordClass,
         wordMeaning: word.wordMeaning,
+        isFormal: word.isFormal,
         examples: word.examples
       });
       setOriginalName(word.wordName);
@@ -81,6 +84,7 @@ export default function EditWordModal({
       wordName: formData.wordName.toLowerCase(),
       wordClass: formData.wordClass,
       wordMeaning: formData.wordMeaning,
+      isFormal: formData.isFormal,
       examples: formData.examples,
       originalName
     });
@@ -138,10 +142,27 @@ export default function EditWordModal({
   }
 
   function handleChange(e) {
-    setEditWordFormData({
-      ...editWordFormData,
-      [e.target.name]: e.target.value
-    });
+    const targetName = e.target.name;
+    const targetValue = e.target.value;
+    if (targetName === 'isFormal') {
+      let formality;
+      if (targetValue === 'true') {
+        formality = true;
+      }
+      else {
+        formality = false;
+      }
+      setEditWordFormData({
+        ...editWordFormData,
+        [targetName]: formality
+      });
+    }
+    else {
+      setEditWordFormData({
+        ...editWordFormData,
+        [targetName]: targetValue
+      });
+    }
   }
 
   function handleExampleChange(e) {
@@ -232,6 +253,12 @@ export default function EditWordModal({
                 <option value="Article">Article</option>
                 <option value="Phrasal verb">Phrasal verb</option>
               </select>
+            </div>
+            <div className="word-formality-container">
+              NOT Formal:
+              <input type="radio" name="isFormal" value="false" checked={!isFormal} onChange={handleChange} />
+              Formal:
+              <input type="radio" name="isFormal" value="true" checked={isFormal} onChange={handleChange} />
             </div>
             <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Edit Word</button>
           </form>

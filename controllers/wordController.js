@@ -21,7 +21,7 @@ async function getWordsController(req, res) {
 // @ACCESS        Private
 async function addNewWord(req, res) {
   const userId = req.user.id;
-  const { wordName, wordClass, wordMeaning, examples } = req.body;
+  const { wordName, wordClass, wordMeaning, examples, isFormal } = req.body;
   try {
     const isWordDuplicated = await Word.findOne({ wordName });
     if (isWordDuplicated) {
@@ -33,6 +33,7 @@ async function addNewWord(req, res) {
       wordClass,
       wordMeaning,
       examples,
+      isFormal,
       user: userId
     });
 
@@ -49,7 +50,7 @@ async function addNewWord(req, res) {
 // @DESCRIPTION   Edit a word
 // @ACCESS        Private
 async function editWord(req, res) {
-  const { wordName, wordClass, wordMeaning, examples, originalName } = req.body;
+  const { wordName, wordClass, wordMeaning, examples, isFormal, originalName } = req.body;
   try {
     const word = await Word.findById(req.params.id);
 
@@ -66,6 +67,7 @@ async function editWord(req, res) {
     word.wordClass = wordClass;
     word.wordMeaning = wordMeaning;
     word.examples = examples;
+    word.isFormal = isFormal;
 
     await word.save();
     return res.status(200).json(word);
