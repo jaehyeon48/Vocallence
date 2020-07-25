@@ -35,7 +35,7 @@ export default function MainPage() {
         setWordList(response.data);
       }
     } catch (error) {
-      console.log(error.response);
+      console.error(error);
     }
   }
 
