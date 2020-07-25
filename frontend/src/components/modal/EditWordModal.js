@@ -4,8 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { WordListContext } from '../../context/WordListContext';
 
-import './editWordModal.css';
-
 export default function EditWordModal({
   setEditModalOpen,
   word
@@ -239,7 +237,7 @@ export default function EditWordModal({
                 ))
               }
             </div>
-            <div className="add-word-form__word-class-container">
+            <div className="modal-word-form__word-class-container">
               <p className="word-class-container__title">Part of speech: </p>
               <select className="word-class-container__select-word-class" name="wordClass" value={wordClass} onChange={handleChange}>
                 <option value="Noun">Noun</option>
@@ -255,12 +253,16 @@ export default function EditWordModal({
               </select>
             </div>
             <div className="word-formality-container">
-              NOT Formal:
-              <input type="radio" name="isFormal" value="false" checked={!isFormal} onChange={handleChange} />
-              Formal:
-              <input type="radio" name="isFormal" value="true" checked={isFormal} onChange={handleChange} />
+              <span className="not-formal-button-container">
+                NOT Formal{' '}
+                <input type="radio" name="isFormal" value="false" checked={!isFormal} onChange={handleChange} />
+              </span>
+              <span className="formal-button-container">
+                Formal{' '}
+                <input type="radio" name="isFormal" value="true" checked={isFormal} onChange={handleChange} />
+              </span>
             </div>
-            <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Edit Word</button>
+            <button className="modal-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Edit Word</button>
           </form>
         </div>
       </div>

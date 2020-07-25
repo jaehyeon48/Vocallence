@@ -185,18 +185,18 @@ export default function AddWordModal({
           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" className="svg-inline--fa fa-times fa-w-11 modal-exit-icon" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
         </span>
         <div className="modal-word-container">
-          <form className="add-word-form" onSubmit={handleSubmit}>
+          <form className="modal-word-form" onSubmit={handleSubmit}>
             <div className="modal-word-form__word-name-container">
               <input className={wordNameErr ? "form-input-error" : "form-input"} type="text" name="wordName" value={wordName} onChange={handleChange} required />
               <span className={wordNameErr ? "form-label-error" : "form-label"}>Word Name</span>
               {wordNameErr ? <small className="form-error-notice"> - Please enter valid wordName.</small> : null}
             </div>
-            <div className="add-word-form__word-meaning-container">
+            <div className="modal-word-form__word-meaning-container">
               <input className={wordMeaningErr ? "form-input-error" : "form-input"} type="text" name="wordMeaning" value={wordMeaning} onChange={handleChange} required />
               <span className={wordMeaningErr ? "form-label-error" : "form-label"}>Word Meaning</span>
               {wordMeaningErr ? <small className="form-error-notice form-error-notice__word-meaning"> - Please enter valid wordMeaning.</small> : null}
             </div>
-            <div className="add-word-form__examples-container">
+            <div className="modal-word-form__examples-container">
               <p className="examples-container__title">Examples: </p>
               <small className="examples-container__notice-max-number"> - You can add up to 3 example sentences.</small>
               <span className="examples-container__add-button" onClick={handleAddExampleField}>
@@ -214,7 +214,7 @@ export default function AddWordModal({
                 ))
               }
             </div>
-            <div className="add-word-form__word-class-container">
+            <div className="modal-word-form__word-class-container">
               <p className="word-class-container__title">Part of speech: </p>
               <select className="word-class-container__select-word-class" name="wordClass" value={wordClass} onChange={handleChange}>
                 <option value="Noun">Noun</option>
@@ -230,12 +230,16 @@ export default function AddWordModal({
               </select>
             </div>
             <div className="word-formality-container">
-              NOT Formal:
-              <input type="radio" name="isFormal" value="false" checked={!isFormal} onChange={handleChange} />
-              Formal:
-              <input type="radio" name="isFormal" value="true" checked={isFormal} onChange={handleChange} />
+              <span className="not-formal-button-container">
+                NOT Formal{' '}
+                <input type="radio" name="isFormal" value="false" checked={!isFormal} onChange={handleChange} />
+              </span>
+              <span className="formal-button-container">
+                Formal{' '}
+                <input type="radio" name="isFormal" value="true" checked={isFormal} onChange={handleChange} />
+              </span>
             </div>
-            <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Add New Word</button>
+            <button className="modal-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Add New Word</button>
           </form>
         </div>
       </div>

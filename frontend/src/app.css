@@ -280,7 +280,7 @@ input:not(valid) ~ .delete-example-button-container {
   transition: fill 0.2s ease;
 }
 
-.add-word-form {
+.modal-word-form {
   font-size: 1.4rem;
   margin-top: 15px;
   display: flex;
@@ -288,17 +288,17 @@ input:not(valid) ~ .delete-example-button-container {
   flex-wrap: wrap;
 }
 
-.add-word-form__word-meaning-container {
+.modal-word-form__word-meaning-container {
   width: 96%;
   position: relative;
   margin: 25px 15px 0 0;
 }
 
-.add-word-form__word-class-container {
+.modal-word-form__word-class-container {
   position: relative;
 }
 
-.add-word-form__examples-container {
+.modal-word-form__examples-container {
   width: 96%;
   position: relative;
   display: flex;
@@ -321,12 +321,21 @@ input:not(valid) ~ .delete-example-button-container {
   cursor: pointer;
 }
 
+.word-formality-container {
+  margin: 20px 0;
+  color: #c7dc44;
+}
+
+.not-formal-button-container {
+  margin-right: 20px;
+}
+
 .word-class-container__select-word-class:hover {
   box-shadow: 0 0 2px 4px #2063b9;
   background: url('./img/select-arrow-down-white.svg') no-repeat 95% 50%;
 }
 
-.add-word-form__submit-button {
+.modal-word-form__submit-button {
   background-color: #c46543;
   color: #f1e4e4;
   border: none;
@@ -337,12 +346,12 @@ input:not(valid) ~ .delete-example-button-container {
   cursor: pointer;
 }
 
-.add-word-form__submit-button:hover {
+.modal-word-form__submit-button:hover {
   background-color: #aa4c2a;
   color: #ffffff;
 }
 
-.add-word-form__submit-button:disabled {
+.modal-word-form__submit-button:disabled {
   background-color: #72321a;
   color: #b6acac;
   cursor: not-allowed;
