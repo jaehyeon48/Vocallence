@@ -225,6 +225,7 @@ export default function EditWordModal({
                 <option value="Conjunction">Conjunction</option>
                 <option value="Interjection">Interjection</option>
                 <option value="Article">Article</option>
+                <option value="Phrasal verb">Phrasal verb</option>
               </select>
             </div>
             <button className="add-word-form__submit-button" type="submit" disabled={isSubmitDisabled}>Edit Word</button>
