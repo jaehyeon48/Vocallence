@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import VOCAllence from './VOCAllence';
+import VOCAllence from './Vocallence';
 
 
 ReactDOM.render(
