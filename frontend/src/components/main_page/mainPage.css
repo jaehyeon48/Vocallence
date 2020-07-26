@@ -9,7 +9,7 @@
 #main-container {
   display: grid;
   grid-template-columns: repeat(40, 1fr);
-  grid-template-rows: 20px 80px 150px 1fr 1fr 50px 30px;
+  grid-template-rows: 20px 80px 1fr 90px 1fr 50px 30px;
   margin: 30px 15px;
 }
 
@@ -59,7 +59,7 @@
   grid-column: 5 / span 32;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-template-rows: 1fr 28px 50px 85px;
+  grid-template-rows: 1fr 28px 50px 1fr;
 }
 
 #main-container__word-name {
