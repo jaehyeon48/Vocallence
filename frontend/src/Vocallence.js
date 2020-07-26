@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthContext';
 import { WordListProvider } from './context/WordListContext';
 
 import './app.css';
+import './responsive.css';
 
 export default function VOCAllence() {
   const [openAddWordModal, setOpenAddWordModal] = useState(false);
