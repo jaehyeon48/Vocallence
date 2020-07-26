@@ -249,7 +249,9 @@ export default function EditWordModal({
                 <option value="Conjunction">Conjunction</option>
                 <option value="Interjection">Interjection</option>
                 <option value="Article">Article</option>
+                <option value="Phrase">Phrase</option>
                 <option value="Phrasal verb">Phrasal verb</option>
+                <option value="Idiom">idiom</option>
               </select>
             </div>
             <div className="word-formality-container">
