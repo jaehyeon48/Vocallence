@@ -62,7 +62,7 @@ export default function MainPage() {
   }
 
   if (!authInfo.isAuthenticated) {
-    return <Redirect to="/login" />
+    return <Redirect to="/" />
   }
 
   function handleShuffle() {
