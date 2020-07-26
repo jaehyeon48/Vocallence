@@ -7,7 +7,7 @@ export default function ExampleItem({
   const [highlightedSentence, setHighlightedSentence] = useState('');
   useEffect(() => {
     const wrapCurrentWord = `<span class="highlight-word">${currentWord}</span>`;
-    const wrappedSentence = example.sentence.replace(RegExp(currentWord), wrapCurrentWord);
+    const wrappedSentence = example.sentence.replace(RegExp(currentWord, 'i'), wrapCurrentWord);
     setHighlightedSentence(wrappedSentence);
   }, [example, currentWord]);
 
