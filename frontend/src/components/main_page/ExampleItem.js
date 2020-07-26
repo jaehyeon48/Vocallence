@@ -6,20 +6,9 @@ export default function ExampleItem({
 }) {
   const [highlightedSentence, setHighlightedSentence] = useState('');
   useEffect(() => {
-    const splitIntoWord = example.sentence.split(' ');
-    const currentWordRegex = RegExp(currentWord);
-    splitIntoWord.map((word, index) => {
-      if (currentWordRegex.test(word.toLowerCase())) {
-        const currentWordLength = currentWord.length;
-        const exactMatchedWord = word.slice(0, currentWordLength);
-        const afterMatchedWordPart = word.slice(currentWordLength);
-        splitIntoWord[index] = `<span class="highlight-word">${exactMatchedWord}</span>${afterMatchedWordPart}`;
-      }
-      else {
-        splitIntoWord[index] = word;
-      }
-    });
-    setHighlightedSentence(splitIntoWord.join(' '));
+    const wrapCurrentWord = `<span class="highlight-word">${currentWord}</span>`;
+    const wrappedSentence = example.sentence.replace(RegExp(currentWord), wrapCurrentWord);
+    setHighlightedSentence(wrappedSentence);
   }, [example, currentWord]);
 
   function createMarkup() {
