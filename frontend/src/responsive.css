@@ -8,7 +8,7 @@
   }
 
   #main-container__move-to-nth-word {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
   }
 
   #main-container__move-to-nth-word > button {
@@ -17,7 +17,7 @@
   }
 
   #main-container__word-name {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
   }
 
   #main-container__word-class {
@@ -29,7 +29,7 @@
   }
 
   #main-container__word-meaning {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     margin: 50px 0;
   }
 
@@ -46,12 +46,12 @@
   }
 
   #examples-notice {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .example-item {
-    margin-bottom: 30px;
-    font-size: 1rem;
+    margin-bottom: 40px;
+    font-size: 1.2rem;
   }
 
   #buttons-container__edit-button {
