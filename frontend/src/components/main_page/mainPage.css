@@ -20,7 +20,7 @@
 
 #main-container__move-to-nth-word {
   grid-row: 2;
-  grid-column: 1 / span 40;
+  grid-column: 11 / span 10;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,6 +50,40 @@
 }
 
 #main-container__move-to-nth-word > button:hover {
+  background-color: #d3b76b;
+}
+
+#main-container__find-word {
+  grid-row: 2;
+  grid-column: 22 / span 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 5px;
+}
+
+#main-container__find-word > input {
+  margin: 0 2px 0 8px;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  color: #fff;
+  padding-left: 2px;
+}
+
+#main-container__find-word > button {
+  margin: 0 0 3px 10px;
+  background-color: #ad944f;
+  border: none;
+  border-radius: 0.35rem;
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+#main-container__find-word > button:hover {
   background-color: #d3b76b;
 }
 

@@ -29,7 +29,7 @@ async function addNewWord(req, res) {
     }
 
     const newWord = new Word({
-      wordName,
+      wordName: wordName.toLowerCase(),
       wordClass,
       wordMeaning,
       examples,

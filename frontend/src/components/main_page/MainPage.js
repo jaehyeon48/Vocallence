@@ -19,7 +19,8 @@ export default function MainPage() {
   const [wordList, setWordList] = useContext(WordListContext);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  let nthWordInput = React.createRef();
+  const nthWordInput = React.createRef();
+  const findWordInput = React.createRef();
 
   useEffect(() => {
     let isMounted = true;
@@ -83,6 +84,22 @@ export default function MainPage() {
     }
   }
 
+  function handleFindWord(e) {
+    const findWordName = findWordInput.current.value.toLowerCase();
+    let foundWord = false;
+    wordList.map((word, index) => {
+      if (word.wordName === findWordName) {
+        setCurrentWordIndex(index);
+        foundWord = true;
+        return;
+      }
+    });
+
+    if (!foundWord) {
+      alert('Cannot find the word!');
+    }
+  }
+
   return (
     <React.Fragment>
       {isEditModalOpen ? <EditWordModal word={wordList[currentWordIndex]} setEditModalOpen={setIsEditModalOpen} /> : null}
@@ -94,6 +111,11 @@ export default function MainPage() {
             <input type="number" name="nthWord" ref={nthWordInput} min="1" max={wordList.length} step="1" />
             th word
             <button id="move-to-nth-word-button" onClick={handleMoveToNthWord}>Go!</button>
+          </div>
+          <div id="main-container__find-word">
+            Find Word
+            <input type="text" name="findWord" ref={findWordInput} />
+            <button id="find-word-button" onClick={handleFindWord}>Find</button>
           </div>
           <WordMeaning wordList={wordList} currentIndex={currentWordIndex} />
           <Examples wordList={wordList} currentIndex={currentWordIndex} />
